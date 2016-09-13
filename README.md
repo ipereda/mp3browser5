@@ -3,7 +3,7 @@
 **mp3browser5** is a light-weight web-based browser and streamer for mp3 files with two HTML5/Javascript sound players provided by soundmanager2.
 + [Soundmanager2 Page Player Demo][1]
 + [Soundmanager2 Bar-UI Player Demo][2]
-+ [**mp3browser5** demo web][3] 
++ [**mp3browser5** Demo][3] 
 
 ## Features
 
