@@ -1,0 +1,177 @@
+/* WebView */
+* {
+	/* prevent callout when holding tap on links (the native dialog that comes up) */
+	-webkit-touch-callout: none; 
+	/* prevent webkit from resizing text to fit */
+	-webkit-text-size-adjust: none; 
+	/* prevent copy paste, to allow, change 'none' to 'text' */
+	-webkit-user-select: none; 
+	/* Eliminar el blue box al hacer tap en un enlace */
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0); 
+	-webkit-tap-highlight-color: transparent;
+	/* Scrolling para iOS5 */
+	-webkit-overflow-scrolling: touch;
+}
+
+body {
+	background-color: #000;
+	color: #EFEFEF;
+	font-family: 'RobotoRegular', 'Droid Sans', sans-serif;
+	font-weight: normal;
+	font-size:1em;
+	margin:0;
+	padding:0;
+}
+
+/* Make Header Sticky */
+#header_container {
+	z-index:99;
+	position:fixed;
+	background-color: #696969;
+	top:0px;
+	height: 50px;
+	left:0;
+	width:100%;
+	overflow: visible;
+}
+#header_content{
+	width:100%;
+}
+#itemtitle {
+	visibility: visible; /* Toggle in js */
+	padding-top: 0.20em;
+	margin-left: 0.50em;
+	margin-right: 0.10em;
+}
+#itemtitle .path {
+	font-size: 1.1em;
+	font-weight: bold;
+	background-color: #696969;
+	color:#EFEFEF;
+	text-align: left;
+}
+#itemtitle .title {
+	font-size: 1.1em;
+}
+
+/* CSS for the content of page. */
+#container {
+	z-index: 2;
+	width: 100%;
+	margin: 0;
+	overflow: auto;
+	padding: 50px 0 60px 0;
+	background-color: #000;
+	color: #EFEFEF;
+}
+#content {
+	text-align: left;
+	width:100%; 
+}
+#content .informa {
+	font-size: 1.1em;
+	font-weight: bold;
+	text-align: left;
+	font-style: italic;
+	margin-top: 1.5em;
+	margin-left: 0.25em;
+}
+
+/* folders */
+#content img.foldericon {
+	width:2em;
+	height:2em;
+}
+#content .enlace {
+	padding: 0.20em 0;
+}
+#content img.addicon {
+	height: 1em;
+	padding: 5px;
+	border-color:#CCC;
+	border:1px solid #CCC;
+	border-radius:3px;
+	background-color: #696969;
+}
+
+/* discs */
+#content .discs {
+	float: left;
+    width: 8.75em;
+	height: 13.50em;
+	margin: 0.5em 0.30em;
+}
+#content img.disccover {
+	width: 8.75em;
+	height: 8.75em;
+}
+#content a.disctitle {
+	display: block;
+	font-size: 0.75em;
+	padding: 0.5em 0 0 0;
+}
+/* songs */
+#container img.cover {
+	width:18.75em; /* 300px */
+	height:18.75em;
+	margin: 10px auto 5px auto;
+}
+#content a.songtitle {
+	width:100%;
+	font-size: 1em;
+}
+/* 3D effect (ontouchstart='return true') */
+#content img.foldericon:active,
+#content img.addicon:active,
+#content img.disccover:active {
+	-webkit-transform: scale3d(0.9, 0.9, 1);
+}
+
+/* Make Player Sticky */
+#player_container {
+	z-index:3; 
+	background-color: rgba(0,0,0,0.5);
+	position:static;
+	bottom: 60px;
+	height: 50px;
+	left:0;
+	width:100%;
+}
+
+/* Make Footer Sticky */
+#footer_container {
+	z-index:99;
+	background-color: #696969;
+	bottom:0;
+	height:60px;
+	left:0;
+	position:fixed;
+	width:100%;
+}
+#footer_content {
+	margin:0 auto;
+	width:100%;
+}
+#breadcrumb {
+	position: relative;
+	float: left;
+	text-align: left;
+	padding: 0.3em;
+}
+#footer_content img.icon {
+	width: 3em;
+	height: 3em;
+	margin: 0.10em 0.30em 0 0.10em;
+}
+#footer_content img.icon:active {
+	-webkit-transform: scale3d(0.9, 0.9, 1);
+}
+#footer_content img.iconcover {
+	border-radius:5px;
+	width: 3em;
+	height: 3em;
+	margin: 0.10em 0.30em 0 0;
+}
+#footer_content img.iconcover:active {
+	-webkit-transform: scale3d(0.9, 0.9, 1);
+}

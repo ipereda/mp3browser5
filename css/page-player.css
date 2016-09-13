@@ -1,0 +1,171 @@
+/*
+ SoundManager 2: "page as playlist" styles
+ ------------------------------------------
+ */
+
+ ul.playlist {
+ list-style-type:none;
+ margin:0px;
+ padding:0px;
+ -webkit-font-smoothing: antialiased; /* font trickery */
+}
+ul.playlist li {
+ 	display:table;
+	width:auto;
+ 	font-size:1.2em;
+  	color: #EFEFEF;
+	margin: 0em 0.10em;
+	background-color: #000;
+	border-bottom: 0.1em solid #666;
+}
+ul.playlist li:after { 
+    content: "";
+    display: table;
+    height: 45px;
+    width: 0px; 
+    margin: 11px 0px;
+    background: transparent; 
+}
+ul.playlist li a {
+ 	display: table-cell; 
+	vertical-align: middle;  
+	text-decoration:none;
+	text-align: left; 
+	font-weight:normal;
+	color:#EFEFEF;
+	font-size:1.20em;
+	outline:none;
+	position:relative;
+	z-index:2;
+}
+ul.playlist li img {
+	display: table-cell; 
+	vertical-align: middle;
+	margin:0 15px 0 5px;
+}
+ul.playlist li.sm2_playing .addicon,
+ul.playlist li.sm2_paused .addicon {
+ 	display:none; 
+}
+
+ul.playlist li.sm2_playing,
+ul.playlist li.sm2_paused,
+ul.playlist li.sm2_playing a,
+ul.playlist li.sm2_paused a {
+	border-radius:3px;
+	padding: 0.20em 0.10em;	
+}
+ul.playlist li.sm2_playing:after,
+ul.playlist li.sm2_paused:after,
+ul.playlist li.sm2_playing a:after,
+ul.playlist li.sm2_paused a:after { 
+	display:none;
+}
+ul.playlist li.sm2_playing {
+	background-color:#91AA9D;
+}
+ul.playlist li.sm2_playing a {
+	color:#000;
+}
+ul.playlist li.sm2_paused {
+	background-color:#999;
+}
+ul.playlist li.sm2_paused a {
+	color:#fff;
+}
+ul.playlist li .controls {
+	display:none;
+}
+ul.playlist li.sm2_playing .controls,
+ul.playlist li.sm2_paused .controls {
+	position:relative;
+	display:block;
+}
+ul.playlist li.sm2_paused .controls .statusbar {
+	background-color:#ccc;
+}
+ul.playlist li .controls {
+	position:relative;
+	width:7.9em!important; 
+}
+ul.playlist li .controls .statusbar {
+	position:relative;
+	height:1em;
+	margin: 0.30em 0.15em 0.15em 0;
+	width:auto;
+	border:1px solid #fff;
+	border-radius:3px;
+	overflow:hidden;
+	cursor:-webkit-grab;
+	cursor:grab;
+}
+ul.playlist li .controls.dragging .statusbar {
+	cursor:-webkit-grabbing;
+	cursor:grabbing;
+}
+ul.playlist li .controls .statusbar .position,
+ul.playlist li .controls .statusbar .loading,
+ul.playlist li .controls .statusbar .annotation {
+	position:absolute;
+	left:0px;
+	top:0px;
+	height:1em;
+}
+ul.playlist li .controls .statusbar .position {
+	background-color:#4B7B63;
+	border-right:3px solid #4B7B63;
+	border-radius:3px;
+}
+ul.playlist li.sm2_paused .controls .statusbar .position {
+	background-color:#666;
+	border-color:#666;
+}
+ul.playlist li.sm2_paused .controls .statusbar .loading {
+	background-color:#999;
+}
+ul.playlist li .controls .statusbar .loading {
+	background-color:#BCC9C3;
+}
+ul.playlist li .controls .statusbar .position,
+ul.playlist li .controls .statusbar .loading {
+	width:0px;
+}
+ul.playlist li .timing {
+	display:none;
+	text-align:center;
+	margin: 0.20em 0.15em 0 0;
+	width:auto;
+	height:1em;
+	padding:3px 3px;
+	background-color:#6C917F;
+	border:1px solid #EFEFEF;
+	border-radius:3px;
+	letter-spacing:0px;
+ 	font:80% sans-serif;
+	line-height:1em;
+	vertical-align:middle;
+}
+ul.playlist.use-peak li .timing {
+	right:4.25em;
+}
+ul.playlist li .timing div.sm2_timing {
+	margin:0px;
+	padding:0px;
+	margin-top:-1em;
+}
+ul.playlist li.sm2_playing .timing,
+ul.playlist li.sm2_paused .timing {
+	display:block;
+	overflow:hidden;
+}
+ul.playlist li.sm2_playing .timing  {
+	color:#EFEFEF;
+}
+ul.playlist li.sm2_paused .timing {
+	background-color:#888;
+	border-color:#ccc;
+}
+
+#control-template {
+ display:none;
+}

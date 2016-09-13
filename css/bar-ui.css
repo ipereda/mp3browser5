@@ -1,0 +1,416 @@
+﻿/*
+ SoundManager 2: "bar-ui as playlist" styles
+ -------------------------------------------
+ */
+ .sm2-bar-ui {
+	position: fixed;
+	display: inline-block;
+	width: 100%;
+ 	font-family: 'RobotoRegular', 'Droid Sans', sans-serif;
+	font-weight: normal;
+	font-size: 15px;
+	text-shadow: none;
+	/* prevent background border bleed */
+	-webkit-background-clip: padding-box;
+	/* because indeed, fonts do look pretty "fat" otherwise in this case. */
+	-webkit-font-smoothing: antialiased;
+	/* take out overflow if you want an absolutely-positioned playlist dropdown. */
+	overflow: hidden; 
+}
+.sm2-bar-ui .sm2-main-controls,
+.sm2-bar-ui .sm2-playlist-drawer {
+	background-color: #696969;
+}
+.sm2-bar-ui .sm2-inline-texture {
+	background: transparent;
+}
+.sm2-bar-ui.full-width {
+	max-width: 100%;
+}
+.sm2-bar-ui.fixed {
+	z-index:3; 
+	position:fixed;
+	bottom: 62px;
+	height: 50px; 
+	left:0;
+	width:100%;
+	overflow:visible;
+}
+.sm2-bar-ui.fixed .bd {
+	border-radius: 0px;
+	border-bottom: none;
+}
+.sm2-bar-ui.playlist-open .bd {
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+	border-bottom-color: transparent;
+}
+.sm2-bar-ui .bd {
+	position: relative;
+	background-color: #696969;
+}
+.sm2-bar-ui.flat .sm2-box-shadow {
+	display: none;
+	box-shadow: none;
+}
+.sm2-bar-ui.no-volume .sm2-volume {
+	/* mobile devices (android + iOS) ignore attempts to set volume. */
+	display: none;
+}
+.sm2-bar-ui .bd {
+	display: table;
+	border-bottom: none;
+}
+.sm2-bar-ui .sm2-playlist-wrapper {
+	background-color: rgba(0,0,0,0.1);
+}
+.sm2-bar-ui,
+.sm2-bar-ui .bd a {
+	color: #fff;
+}
+.sm2-bar-ui .bd a {
+	text-decoration: none;
+}
+.sm2-bar-ui .bd .sm2-button-element:active {
+	-webkit-transform: scale3d(0.9, 0.9, 1);
+	background-color: rgba(0,0,0,0.25);
+}
+.sm2-bar-ui .bd .active {
+	background-color: rgba(0,0,0,0.1);
+}
+.sm2-bar-ui .sm2-inline-element {
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+	padding: 0px;
+	overflow: hidden;
+}
+.sm2-bar-ui .sm2-inline-element,
+.sm2-bar-ui .sm2-button-element .sm2-button-bd {
+	position: relative;
+	min-width: 50px;
+	min-height: 50px;
+}
+.sm2-bar-ui .sm2-inline-button {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+}
+.sm2-bar-ui .sm2-inline-status {
+	line-height: 100%;
+	/* how much to allow before truncating song artist / title with ellipsis */
+	display: inline-block;
+	min-width: 200px;
+	max-width: 20em;
+	/* a little more spacing */
+	padding-left: 0.75em;
+	padding-right: 0.75em;
+}
+.sm2-bar-ui .sm2-inline-element {
+	border-right: 0.1em solid #C6C6C6;
+	border-bottom: 0.1em solid #C6C6C6;
+	border-top: 0.1em solid #C6C6C6;
+	box-shadow: inset 0 2px 0 0 rgba(255,255,255,.5);
+}
+.sm2-bar-ui .sm2-inline-element.noborder {
+	border-right: none;
+}
+.sm2-bar-ui .sm2-inline-element:first-of-type {
+ 	border-left: none;
+}
+
+.sm2-bar-ui .sm2-inline-element:last-of-type {
+	border-right: none;
+}
+.sm2-inline-time,
+.sm2-inline-duration {
+	display: table-cell;
+	width: 1%;
+	font-size: 75%;
+	line-height: 0.9em;
+	min-width: 2em; /* if you have sounds > 10:00 in length, make this bigger. */
+	vertical-align: middle;
+}
+
+/* Control Playlist */
+.sm2-bar-ui .sm2-playlist {
+	position: relative;
+	height: 1.45em;
+}
+.sm2-bar-ui .sm2-playlist-target {
+	/* initial render / empty case */
+	position: relative;
+	min-height: 1em;
+}
+.sm2-bar-ui ul {
+	line-height: 1em;
+}
+.sm2-bar-ui .sm2-playlist ul {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	list-style-type: none;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.sm2-bar-ui p,
+.sm2-bar-ui .sm2-playlist ul,
+.sm2-bar-ui .sm2-playlist ul li {
+	margin: 0px;
+	padding: 0px;
+}
+.sm2-bar-ui .sm2-playlist ul li {
+	position: relative;
+}
+.sm2-bar-ui .sm2-playlist ul li,
+.sm2-bar-ui .sm2-playlist ul li a {
+	position: relative;
+	display: block;
+	/* prevent clipping of characters like "g" */
+	height: 1.45em;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-align: center;
+}
+.sm2-bar-ui .sm2-playlist li {
+	text-align: center;
+	font-size: 92.5%;
+	line-height: 1em;
+}
+.sm2-bar-ui .sm2-playlist li .load-error {
+	cursor: help;
+}
+.sm2-row {
+	display: table-row;
+}
+.sm2-progress-bd {
+	/* spacing between progress track/ball and time (position) */
+	padding: 0 0.45em 0 0.20em;
+}
+.sm2-progress .sm2-progress-track,
+.sm2-progress .sm2-progress-bar {
+	cursor: grab;
+	position: relative;
+	width: 100%;
+	height: 0.75em;
+ 	border:1px solid #fff;
+	border-radius:3px;
+}
+.sm2-progress .sm2-progress-bar {
+	/* element which follows the progres "ball" as it moves */
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	height: 0.65em; 
+	width: 0px;
+	background-color: rgba(0,0,0,0.33);
+}
+.sm2-progress .sm2-progress-track {
+ background-color: rgba(0,0,0,0.4);
+}
+.playing .sm2-progress .sm2-progress-track {
+	background-color:#BCC9C3;
+}
+.playing .sm2-progress .sm2-progress-bar {
+	background-color:#4B7B63;
+}
+.paused .sm2-progress .sm2-progress-track {
+	background-color: #999999;
+}
+.paused .sm2-progress .sm2-progress-bar {
+	background-color: #666666;
+}
+.sm2-progress .sm2-progress-ball {
+	display:none;
+}
+.sm2-inline-button {
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	/* hide inner text */
+	line-height: 10em;
+	image-rendering: -webkit-optimize-contrast;
+}
+.clear {
+	background-image: url(../images/clear.png);
+ 	background-size: 60%;
+	background-position: 50% 50%;
+}
+.next {
+	background-image: url(../images/next.png);
+	background-size: 45%;
+	background-position: 50% 50%;
+}
+.menu {
+	background-image: url(../images/menum.png);
+ 	background-size: 60%;
+	background-position: 50% 50%;
+}
+.sm2-progress-ball .icon-overlay {
+ display: none; 
+}
+.sm2-element ul {
+	font-size: 95%;
+	list-style-type: none;
+}
+.sm2-element ul,
+.sm2-element ul li {
+	margin: 0px;
+	padding: 0px;
+}
+.bd.sm2-playlist-drawer {
+	display: block;	
+	position: fixed;
+	overflow-y: scroll;
+	width: 100%;
+	height: 0em;
+	background-image: none;
+	-webkit-transition: height 0.2s ease-in-out;
+}
+.sm2-bar-ui.fixed .bd.sm2-playlist-drawer,
+.sm2-bar-ui.bottom .bd.sm2-playlist-drawer {
+	position: absolute;
+}
+.sm2-bar-ui.fixed .sm2-playlist-wrapper,
+.sm2-bar-ui.bottom .sm2-playlist-wrapper {
+	position: static;
+	margin-top: 3.6em;
+	padding-bottom: 0px;
+}
+.sm2-bar-ui.fixed .bd.sm2-playlist-drawer,
+.sm2-bar-ui.bottom .bd.sm2-playlist-drawer {
+	bottom: 3.20em; 
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+.sm2-bar-ui .bd.sm2-playlist-drawer {
+	opacity: 0.5;
+}
+.sm2-bar-ui.playlist-open .bd.sm2-playlist-drawer {
+	opacity: 1;
+}
+.sm2-bar-ui.fixed.playlist-open .bd.sm2-playlist-drawer .sm2-playlist-wrapper,
+.sm2-bar-ui.bottom.playlist-open .bd.sm2-playlist-drawer .sm2-playlist-wrapper {
+	/* extra padding when open */
+	margin-top: 0em;
+	padding-bottom: 0.5em;
+	box-shadow: none;
+}
+.sm2-bar-ui .bd.sm2-playlist-drawer .sm2-inline-texture {
+	/* negative offset for height of top bar, so background is seamless. */
+	background-position: 0px -2.8em;
+}
+.sm2-box-shadow {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	box-shadow: inset 0px 1px 6px rgba(0,0,0,0.15);
+}
+.sm2-playlist-wrapper {
+	position: relative;
+	padding: 0.5em 0.5em 0.5em 0.25em;
+	background-image: none, none;
+	z-index: 3;
+}
+.sm2-playlist-wrapper ul {
+	max-height: 22em; 
+	overflow: auto;
+}
+.sm2-playlist-wrapper ul li { 
+	z-index: 3;
+	padding: 0;
+}
+.sm2-playlist-wrapper ul li:nth-child(odd) {
+	background-color: rgba(255,255,255,0.03);
+}
+.sm2-playlist-wrapper ul li a {
+	z-index: 3;
+	display: block;
+	padding: 0.75em 0.25em 0.75em 0.25em;
+	margin-right: 0.5em;
+	font-size: 105%;
+	vertical-align: middle;
+}
+.sm2-playlist-wrapper ul li a.sm2-exclude {
+	display: inline-block;
+}
+.sm2-playlist-wrapper ul li a.sm2-exclude .label {
+	font-size: 95%;
+	line-height: 1em;
+	margin-left: 0px;
+	padding: 2px 4px;
+}
+.sm2-playlist-wrapper ul li.selected a {
+ 	color: #000!important;
+	background-color: #91AA9D!important;
+	border-radius:3px;
+}
+.sm2-bar-ui .disabled {
+	opacity: 0.33;
+}
+.sm2-bar-ui .active {
+}
+
+/* some custom scrollbar trickery, where supported */
+.sm2-playlist-wrapper ul::-webkit-scrollbar {
+	width: 10px;
+}
+.sm2-playlist-wrapper ul::-webkit-scrollbar-track {
+	background: rgba(0,0,0,0.33);
+	border-radius: 10px;
+}
+.sm2-playlist-wrapper ul::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	background: #fff;
+}
+
+.sm2-playlist-wrapper .deletesong {
+	float:left;
+	background-color: #808080;
+	height: 1.15em;
+	padding: 0.30em 0;
+	margin-top: 0.30em;
+	border: 1px solid #CCC;
+	border-radius: 3px;
+	cursor: crosshair;
+}
+.sm2-playlist-wrapper .deleteicon {
+	height: 1em;
+	padding:0.10em 0.75em;
+	background-color: transparent;
+}
+.sm2-playlist-wrapper .deleteicon:active {
+	-webkit-transform: scale3d(0.9, 0.9, 1);
+}
+.sm2-playlist-wrapper ul li.selected .deletesong {
+	display:none;
+}
+
+/* --- full width stuff --- */
+.sm2-bar-ui .sm2-inline-element {
+	display: table-cell;
+}
+.sm2-bar-ui .sm2-inline-element {
+	/* collapse */
+	width: 1%;
+}
+.sm2-bar-ui .sm2-inline-status {
+	/* full width */
+	width: 100%;
+	min-width: 100%;
+	max-width: 100%;
+}
+.sm2-bar-ui > .bd {
+	width: 100%;
+}
+.sm2-bar-ui .sm2-playlist-drawer {
+	/* re-hide playlist */
+	display: block;
+	overflow: hidden;
+}
