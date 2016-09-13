@@ -46,3 +46,5 @@
 [2]: http://www.schillmania.com/projects/soundmanager2/demo/bar-ui/
 [3]: http://mp3browser5.informaticoszgz.org
 
+## Detected Issues
+
