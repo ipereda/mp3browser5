@@ -246,7 +246,7 @@ class MP3Browser5 {
     $group = array();
     foreach ($entries as $plainItem) {
         $item = new Item($plainItem, $this->charset, $this->folderCovers, $this->path);
-		$group[$index][] = $item;
+		$group[0][] = $item;
     }
     ksort($group);
     return $group;
