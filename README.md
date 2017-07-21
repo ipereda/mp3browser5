@@ -44,7 +44,7 @@
 
 [1]: http://www.schillmania.com/projects/soundmanager2/demo/page-player/
 [2]: http://www.schillmania.com/projects/soundmanager2/demo/bar-ui/
-[3]: http://mp3browser5.informaticoszgz.org
+[3]: http://mp3browser5.ipereda.com
 
 ## Detected Issues
 
