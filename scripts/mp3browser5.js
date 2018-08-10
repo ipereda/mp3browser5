@@ -50,6 +50,13 @@ function enableClick(id) {
 }
 
 /**
+ * Download song
+ */
+function downCancion(link) {
+	window.location=link;
+}
+
+/**
  * Add song to the bar-ui playlist
  */
 function addCancion(link, item) {
@@ -68,10 +75,19 @@ function addCancion(link, item) {
 	document.getElementById('userPlaylist').appendChild(node);
 
 	alertify.success("<b>\""+item+"\"</b></br>added to the playlist");
-	
-	// Updating playlist drawer (open/close-close/open)
-	window.sm2BarPlayers[0].actions.menu();
-	window.sm2BarPlayers[0].actions.menu();
+}
+
+/**
+ * Add all album songs to the bar-ui playlist with autoclick metod
+ */
+function addAlbum() {
+	var ul = document.getElementById("playlist");
+		var items = ul.getElementsByTagName("li");
+		for (var i = 0; i < items.length; ++i) {
+			// Add album songs identified with id='cancionXX'
+			var cancion = 'cancion'+(i+1);
+			document.getElementById(cancion).click();
+		}
 }
 
 /**

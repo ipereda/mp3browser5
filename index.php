@@ -8,12 +8,11 @@ $config = array(
   #	'path' => "F:\MUSIC", // Windows path sample
   'path' => "./music", // Current directory sample
   
-  
   # The template file
   'template' => "template.inc",
   
   # Name of root entry in header
-  'homeName' => "MP3 Web Browser with HTML5 Players",
+  'homeName' => "MP3 Web Browser with HTML5 Player",
 
   # Array of regular expression (regexp) matches for files/directories to hide
   'hideItems' => array("/^lost\+found/", "/^\./"),

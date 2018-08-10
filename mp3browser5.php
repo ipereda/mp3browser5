@@ -125,7 +125,7 @@ class MP3Browser5 {
 
       $result = array();
 	  $result['itemtitle'] = $this->html_itemtitle();
-	  $result['content'] = "<ul class='playlist'>" . $content . "</ul>"; 
+	  $result['content'] = "<ul class='playlist' id='playlist'>" . $content . "</ul>"; 
 	  $result['cover'] = $this->html_cover();
       $result['breadcrumb'] = $this->html_breadcrumb();
 	  
@@ -162,10 +162,10 @@ class MP3Browser5 {
 								<div class='sm2-inline-time'>0:00</div>
 									<div class='sm2-progress-bd'>
 										<div class='sm2-progress-track'>
-										<div class='sm2-progress-bar'></div>
-										<div class='sm2-progress-ball'></div>
+											<div class='sm2-progress-bar'></div>
+											<div class='sm2-progress-ball'></div>
+										</div>
 									</div>
-								</div>
 								<div class='sm2-inline-duration'>0:00</div>
 							</div>
 						</div>
@@ -277,11 +277,12 @@ class MP3Browser5 {
 
   /**
    * @return string Formatted HTML with cover image (if any)
+   * Add function for add all album songs to playlist
    */
   function html_cover() {
     $link = $this->path->cover_image();
     if (!empty($link)) {
-		return "<img class=cover src=\"$link\">"; 
+		return "<a href=javascript:addAlbum()><img class=cover src=\"$link\"></a>"; 
     }
     return "";
   }
@@ -400,23 +401,22 @@ class MP3Browser5 {
 
 
 class Logger {
-  function log($msg) {
-    if (!isset($_SESSION['message'])) {
-      $_SESSION['message'] = $msg;
-    } else {
-      $_SESSION['message'] .= "<br>\n$msg";
-    }
-  }
+    public static function log($msg) {
+		if (!isset($_SESSION['message'])) {
+			$_SESSION['message'] = $msg;
+		} else {
+			$_SESSION['message'] .= "<br>\n$msg";
+		}
+	}
 
-  function pop() {
-    if (isset($_SESSION['message'])) {
-      $msg = $_SESSION['message'];
-      unset($_SESSION['message']);
-      return $msg;
-    }
-  }
+    public static function pop() {
+		if (isset($_SESSION['message'])) {
+			$msg = $_SESSION['message'];
+			unset($_SESSION['message']);
+			return $msg;
+		}
+	}
 }
-
 
 class Path {
 
@@ -487,7 +487,6 @@ class Path {
   }
 }
 
-
 class Url {
 
   var $root = NULL;     # e.g. http://mysite.com
@@ -525,11 +524,10 @@ class Url {
   }
 }
 
-
-class Item {
 /**
  * A file or folder item.
  */
+class Item {
   var $item;
   var $urlPath;
   var $charset;
@@ -571,7 +569,8 @@ class Item {
   }
   
   function dir_link() {
-    $image = $this->show_folder_cover($this->item);
+    global $num; $num = 0;  //Counter of album songs
+	$image = $this->show_folder_cover($this->item);
     $link = Util::play_url($this->url_path());
     $jsurl = $this->js_url_path();
     $item = $this->display_item();
@@ -588,15 +587,18 @@ class Item {
   }
   
   function file_link() {
+	global $num; $num++; //Counter of album songs
     $link = Util::play_url($this->url_path());
 	$link = Util::js_url($link);
 	$item = str_replace(".mp3" , "" , $this->display_item());
 	$itemcode = str_replace(".mp3" , "" , preg_replace('/\s+/', '%20', $this->display_item())); // Encoding blank spaces for javascript string
 	// Add link to Bar-UI playlist
-	$enlace = "<li><a href=javascript:addCancion(\"{$link}\",\"{$itemcode}\") ><img class=addicon src=images/add.png></a>";
-	// Link to Page Player mode
-	$enlace .= "<a class='songtitle' href=$link >$item</a></li>";       
-    return $enlace;
+	$enlace = "<li><a id='cancion{$num}' href=javascript:addCancion(\"{$link}\",\"{$itemcode}\") ><img class=addicon src=images/add.png></a>";
+	// Item
+	$enlace .= "<a class='songtitle'>$item</a>";
+	// Download
+	$enlace .= "<a href=javascript:downCancion(\"{$link}\") ><img class=addicon src=images/download.png></a></li>";
+	return $enlace;	
   }
     
   function direct_link($urlPath) {
@@ -617,76 +619,77 @@ class Item {
   }  
 }
 
-
-class Util {
 /**
  * Common static utility functions.
  */
+class Util {
   /**
    * Need to encode url entities twice in javascript calls.
    */
-  function js_url($url) {
-    return preg_replace("/%([0-9a-f]{2})/i", "%25\\1", $url);
-  }
+	public static function js_url($url) {
+		return preg_replace("/%([0-9a-f]{2})/i", "%25\\1", $url);
+	}
   
   /**
    * Encode a fairly readable path for the URL.
    */
-  function path_encode($path, $encodeSpace = true, $fromCharset = null) {
-    $search = array("|^%2F|", "|%2F|");
-    $replace = array("", "/");
-	if ($encodeSpace) {
-       $search[] = "|%20|";
-       $replace[] = "+";
-    }
-    if (!empty($fromCharset)) $path = Util::convert_to_utf8($path, $fromCharset);
-	return preg_replace($search, $replace, rawurlencode($path)); 
-  }
+    public static function path_encode($path, $encodeSpace = true, $fromCharset = null) {
+		$search = array("|^%2F|", "|%2F|");
+		$replace = array("", "/");
+		if ($encodeSpace) {
+			$search[] = "|%20|";
+			$replace[] = "+";
+		}
+		if (!empty($fromCharset)) $path = Util::convert_to_utf8($path, $fromCharset);
+		return preg_replace($search, $replace, rawurlencode($path)); 
+	}
   
   /**
    * Play the URL
    */
-  function play_url($urlPath) {
+	public static function play_url($urlPath) {
 		return "index.php?path=" . $urlPath;
-  }
+	}
  
-  function strip($str) {
-    return preg_replace('/[^\x20-\x21\x23-\x5b\x5d-\xff]/', "", $str);
-  }
+    public static function strip($str) {
+		return preg_replace('/[^\x20-\x21\x23-\x5b\x5d-\xff]/', "", $str);
+	}
 
-  function word_wrap($item, $charset) {
-    $pieces = split(" ", preg_replace("/_/", " ", $item));
-    $result = array();
-    foreach ($pieces as $piece) {
-      $current = $piece;
-      while (mb_strlen($current) > 40) {
-        $result[] = mb_substr($current, 0, 40, $charset);
-        $current = mb_substr($current, 40, 2048, $charset);
-      }
-      $result[] = $current;
-    }
-    return implode(" ", $result);
-  }
+    public static function word_wrap($item, $charset) {
+		//$pieces = split(" ", preg_replace("/_/", " ", $item)); DEPRECATED
+		$pieces = explode(" ", preg_replace("/_/", " ", $item));
+		$result = array();
+		foreach ($pieces as $piece) {
+			$current = $piece;
+			while (mb_strlen($current) > 40) {
+				$result[] = mb_substr($current, 0, 40, $charset);
+				$current = mb_substr($current, 40, 2048, $charset);
+			}
+			$result[] = $current;
+		}
+		return implode(" ", $result);
+	}
 
   /**
    * The MP3 player can only handle utf-8.
    */
-  function convert_to_utf8($entry, $fromCharset) {
-    if ($fromCharset != "utf-8") {
-      $entry = mb_convert_encoding($entry , "utf-8", $fromCharset);
-    }
-    return $entry;
-  }
+	public static function convert_to_utf8($entry, $fromCharset) {
+		if ($fromCharset != "utf-8") {
+			$entry = mb_convert_encoding($entry , "utf-8", $fromCharset);
+		}
+		return $entry;
+	}
 
   /**
    * @param string $file A file path
    * @return The last part of a path
    */
-  function pathinfo_basename($file) {
-     return array_pop(explode("/", $file));
-  }
+	public static function pathinfo_basename($file) {
+		//return array_pop(explode("/", $file)); DEPRECATED
+		$tmp = explode("/", $file);
+		return array_pop($tmp);
+	}
 }
-
 
 class StreamLib {
   /**
@@ -695,10 +698,6 @@ class StreamLib {
   function stream_mp3($file) {
      $this->stream_file($file, "audio/mpeg");
   }
-
-  /**
-   * @param string $file Filename with full path
-   */
   function stream_jpg($file) {
      $this->stream_file($file, "image/jpeg", false);
   }
@@ -726,7 +725,9 @@ class StreamLib {
    * @param boolean $isAttachment Add "Content-Disposition: attachment" header (optional, defaults to true)
    */
   function stream_file($file, $mimetype, $isAttachment = true) {
-     $filename = array_pop(explode("/", $file));
+     //$filename = array_pop(explode("/", $file)); //DEPRECATED
+	 $tmp = explode("/", $file);
+     $filename = array_pop($tmp);
      header("Content-Type: $mimetype");
      header("Content-Length: " . filesize($file));
      if ($isAttachment) header("Content-Disposition: attachment; filename=\"$filename\"", true);

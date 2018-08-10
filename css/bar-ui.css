@@ -72,6 +72,7 @@
 	text-decoration: none;
 }
 .sm2-bar-ui .bd .sm2-button-element:active {
+	-moz-transform: scale3d(0.9, 0.9, 1);
 	-webkit-transform: scale3d(0.9, 0.9, 1);
 	background-color: rgba(0,0,0,0.25);
 }
@@ -188,18 +189,23 @@
 .sm2-row {
 	display: table-row;
 }
+
+/* Progress BAR */
 .sm2-progress-bd {
 	/* spacing between progress track/ball and time (position) */
 	padding: 0 0.45em 0 0.20em;
 }
 .sm2-progress .sm2-progress-track,
 .sm2-progress .sm2-progress-bar {
-	cursor: grab;
 	position: relative;
 	width: 100%;
 	height: 0.75em;
  	border:1px solid #fff;
 	border-radius:3px;
+    cursor: move; /* fallback if grab cursor is unsupported */
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
 }
 .sm2-progress .sm2-progress-bar {
 	/* element which follows the progres "ball" as it moves */
@@ -209,6 +215,9 @@
 	height: 0.65em; 
 	width: 0px;
 	background-color: rgba(0,0,0,0.33);
+	cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
 }
 .sm2-progress .sm2-progress-track {
  background-color: rgba(0,0,0,0.4);
@@ -228,6 +237,7 @@
 .sm2-progress .sm2-progress-ball {
 	display:none;
 }
+
 .sm2-inline-button {
 	background-position: 50% 50%;
 	background-repeat: no-repeat;
@@ -269,6 +279,7 @@
 	width: 100%;
 	height: 0em;
 	background-image: none;
+	-moz-transition: height 0.2s ease-in-out;
 	-webkit-transition: height 0.2s ease-in-out;
 }
 .sm2-bar-ui.fixed .bd.sm2-playlist-drawer,
@@ -351,10 +362,25 @@
 	background-color: #91AA9D!important;
 	border-radius:3px;
 }
+
+/* Pause/Playing */
+.playing .sm2-playlist-wrapper ul li.selected a {
+ 	color: #000!important;
+	background-color: #91AA9D!important;
+	border-radius:3px;
+}
+.paused .sm2-playlist-wrapper ul li.selected a {
+ 	color: #000!important;
+	background-color: #999999!important;
+	border-radius:3px;
+}
+
 .sm2-bar-ui .disabled {
 	opacity: 0.33;
 }
 .sm2-bar-ui .active {
+	/*box-shadow: inset 0px 0px 2px rgba(0,0,0,0.1);
+	background-image: none;*/
 }
 
 /* some custom scrollbar trickery, where supported */
@@ -370,6 +396,7 @@
 	background: #fff;
 }
 
+/* Delete song from playlist */
 .sm2-playlist-wrapper .deletesong {
 	float:left;
 	background-color: #808080;
@@ -386,6 +413,7 @@
 	background-color: transparent;
 }
 .sm2-playlist-wrapper .deleteicon:active {
+	-moz-transform: scale3d(0.9, 0.9, 1);
 	-webkit-transform: scale3d(0.9, 0.9, 1);
 }
 .sm2-playlist-wrapper ul li.selected .deletesong {

@@ -2,7 +2,7 @@
 <html>
 <head>
 <link rel="icon" type="image/png" href="images/favicon.png" />
-<title>MP3 Web Browser with HTML5 Players</title>
+<title>MP3 Web Browser with HTML5 Player</title>
 <meta name="robots" value="noindex" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
 <meta name="mobile-web-app-capable" content="yes">
@@ -13,8 +13,6 @@
 <link rel="stylesheet" type="text/css" href="css/alertify.css" /> 
 <!-- MP3 Web Browser CSS -->
 <link rel="stylesheet" type="text/css" href="css/mp3browser5.css" />
-<!-- SoundManager2 Page player CSS -->
-<link rel="stylesheet" type="text/css" href="css/page-player.css" />
 <!-- SoundManager2 Bar-UI CSS -->
 <link rel="stylesheet" type="text/css" href="css/bar-ui.css" />
 <!-- Spinner js -->
@@ -23,29 +21,10 @@
 <script type="text/javascript" src="scripts/alertify.min.js"></script>
 <!-- SoundManager API -->
 <script type="text/javascript" src="scripts/soundmanager2-nodebug-jsmin.js"></script>
-<!-- SoundManager Page Player js -->
-<script type="text/javascript" src="scripts/page-player.js"></script>
-<!-- SoundManager Bar-UI js -->
-<script type="text/javascript" src="scripts/bar-ui.js"></script>
 <!-- MP3 Web Browser js -->
 <script type="text/javascript" src="scripts/mp3browser5.js"></script>
-<script>
-// Custom SoundManager2 configuration
-soundManager.setup({
-  useHTML5Audio: true,
-  html5PollingInterval: null,
-  preferFlash: false,
-    onready: function() {
-    // Ready to use; soundManager.createSound() etc. can now be called.
-	}
-});
-// Custom Page Player configuration
-var PP_CONFIG = {
-  autoStart: false,     // begin playing first sound when page loads
-  playNext: true,       // stop after one sound, or play through list until end
-  useThrottling: false  // try to rate-limit potentially-expensive calls (eg. dragging position around)</span>
-}
-</script>
+<!-- SoundManager Bar-UI js -->
+<script type="text/javascript" src="scripts/bar-ui.js"></script>
 </head>
 
 <body class="body">
@@ -66,7 +45,7 @@ var PP_CONFIG = {
 </div>
 <!-- END: Page Content -->
 
-<!-- BEGIN: The HMTL5 Bar-UI Player for selected songs -->
+<!-- BEGIN: The HMTL5 Bar-UI Player for selected songs or album -->
 <div id="player_container">
 	<div align=center id="myplayer">%myplayer%</div>
 </div>
