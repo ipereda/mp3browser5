@@ -18,6 +18,7 @@
 
 + A web server with PHP
 + Most platforms are supported
++ Recommended Firefox browser
 
 ## Installation
 
