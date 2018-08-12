@@ -1,8 +1,17 @@
+# These files are text and should be normalized (Convert crlf => lf)
+*.php text
+*.css text
+*.js text
+*.htm text
+*.html text
+*.xml text
+*.txt text
+*.ini text
+*.inc text
+.htaccess text
+
 # Auto detect text files and perform LF normalization
 * text=auto
-
-# Custom for Visual Studio
-*.cs     diff=csharp
 
 # Standard to msysgit
 *.doc	 diff=astextplain
