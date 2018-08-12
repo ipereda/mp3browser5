@@ -37,9 +37,9 @@
 
 ## Screenshots and Help
 
-![Screenshot mp3browser5 1](https://raw.githubusercontent.com/ipereda/mp3browser5/tree/master/images/help_01.jpg)
-![Screenshot mp3browser5 2](https://raw.githubusercontent.com/ipereda/mp3browser5/tree/master/images/help_02.jpg)
-![Screenshot mp3browser5 3](https://raw.githubusercontent.com/ipereda/mp3browser5/tree/master/images/help_03.jpg)
+![Screenshot mp3browser5 1](https://raw.githubusercontent.com/ipereda/mp3browser5/master/images/help_01.jpg)
+![Screenshot mp3browser5 2](https://raw.githubusercontent.com/ipereda/mp3browser5/master/images/help_02.jpg)
+![Screenshot mp3browser5 3](https://raw.githubusercontent.com/ipereda/mp3browser5/master/images/help_03.jpg)
 
 ## Troubleshooting
 
